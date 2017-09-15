@@ -124,6 +124,7 @@ if (AIX)
         "src/facts/aix/operating_system_resolver.cc"
         "src/facts/aix/processor_resolver.cc"
         "src/facts/aix/serial_number_resolver.cc"
+        "src/facts/aix/virtualization_resolver.cc"
     )
 
     set(LIBFACTER_PLATFORM_LIBRARIES
