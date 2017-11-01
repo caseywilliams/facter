@@ -43,6 +43,28 @@ SCENARIO("resolving external powershell facts") {
                 REQUIRE(facts.get<string_value>("ps1_fact4")->value() == "value2");
             }
         }
+        WHEN("the output is json") {
+            THEN("it populates facts from the json") {
+                resolver.resolve(LIBFACTER_TESTS_DIRECTORY "/fixtures/facts/external/windows/powershell/json.ps1", facts);
+                REQUIRE(!facts.empty());
+                REQUIRE(facts.get<string_value>("ps1_json_fact1"));
+                REQUIRE(facts.get<string_value>("ps1_json_fact1")->value() == "value1");
+                REQUIRE_FALSE(facts.get<string_value>("JSON_fact2"));
+                REQUIRE(facts.get<string_value>("ps1_json_fact2"));
+                REQUIRE(facts.get<string_value>("ps1_json_fact2")->value() == "value2");
+            }
+        }
+        WHEN("the output is yaml") {
+            THEN("it populates facts from the yaml") {
+                resolver.resolve(LIBFACTER_TESTS_DIRECTORY "/fixtures/facts/external/windows/powershell/yaml.ps1", facts);
+                REQUIRE(!facts.empty());
+                REQUIRE(facts.get<string_value>("ps1_yaml_fact1"));
+                REQUIRE(facts.get<string_value>("ps1_yaml_fact1")->value() == "value1");
+                REQUIRE_FALSE(facts.get<string_value>("PS1_YAML_fact2"));
+                REQUIRE(facts.get<string_value>("ps1_yaml_fact2"));
+                REQUIRE(facts.get<string_value>("ps1_yaml_fact2")->value() == "value2");
+            }
+        }
         WHEN("messages are logged to stderr") {
             THEN("a warning is generated") {
                 log_capture capture(level::warning);

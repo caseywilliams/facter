@@ -20,7 +20,7 @@ SCENARIO("resolving external executable facts into a collection") {
             LIBFACTER_TESTS_DIRECTORY "/fixtures/facts/external/windows/powershell",
         });
         THEN("facts should resolve") {
-            REQUIRE(facts.size() == 7u);
+            REQUIRE(facts.size() == 11u);
             REQUIRE(facts.get<string_value>("exe_fact1"));
             REQUIRE(facts.get<string_value>("exe_fact2"));
             REQUIRE_FALSE(facts.get<string_value>("exe_fact3"));
@@ -29,6 +29,10 @@ SCENARIO("resolving external executable facts into a collection") {
             REQUIRE(facts.get<string_value>("ps1_fact2"));
             REQUIRE_FALSE(facts.get<string_value>("ps1_fact3"));
             REQUIRE(facts.get<string_value>("ps1_fact4"));
+            REQUIRE(facts.get<string_value>("ps1_json_fact1"));
+            REQUIRE(facts.get<string_value>("ps1_json_fact2"));
+            REQUIRE(facts.get<string_value>("ps1_yaml_fact1"));
+            REQUIRE(facts.get<string_value>("ps1_yaml_fact2"));
         }
     }
     GIVEN("a relative path") {
