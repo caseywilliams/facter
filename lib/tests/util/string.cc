@@ -1,5 +1,6 @@
 #include <catch.hpp>
 #include <facter/util/string.hpp>
+#include <boost/optional/optional_io.hpp>
 
 using namespace std;
 using namespace facter::util;
