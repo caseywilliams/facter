@@ -115,6 +115,8 @@ namespace facter { namespace facts {
                 } else {
                     ostringstream new_value_ss;
                     value->write(new_value_ss);
+                    LOG_DEBUG("NAME: {1}", name);
+                    LOG_DEBUG("VALUE: {1}", new_value_ss.str());
                     LOG_DEBUG("fact \"{1}\" has resolved to {2}.", name, new_value_ss.str());
                 }
             }
